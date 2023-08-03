@@ -64,10 +64,12 @@ const Login = () => {
                     <label>Password:</label>
                     <input type="password" name="password" placeholder='Password' />
                 </div>
-                <p>Do not have an account? Please <Link to="/register">Register</Link></p>
                 <div className='btn'>
-                    <button type="submit">Login</button>
+                    <p className='para'>Do not have an account? Please <Link to="/register">Register</Link></p>
                     <Link className='reset' onClick={handleResetPassword}>Reset Password</Link>
+                </div>
+                <div>
+                    <button type="submit">Login</button>
                 </div>
                 <p className='success'>{success}</p>
                 <p className='error'>{error}</p>

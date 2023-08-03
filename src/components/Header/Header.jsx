@@ -17,7 +17,9 @@ const Header = () => {
         <nav className='header'>
             <div className='logo'>
                 <img src={logo} alt="" />
-                <p className='userName'>{user?.displayName}</p>
+                {
+                    user && <p className='userName'>{user.displayName}</p>
+                }
             </div>
             <div>
                 <Link to="/">Shop</Link>
