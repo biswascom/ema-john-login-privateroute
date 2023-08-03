@@ -1,0 +1,15 @@
+.btn {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 20px;
+}
+
+.reset {
+    text-decoration: none;
+    margin-top: 20px;
+}
+
+.reset:hover {
+    text-decoration: underline;
+}

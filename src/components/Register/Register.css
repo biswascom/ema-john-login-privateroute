@@ -52,3 +52,11 @@ button:hover {
 button:active {
     background-color: #004080;
 }
+
+.success {
+    color: rgb(0, 255, 0);
+}
+
+.error {
+    color: rgb(132, 0, 0);
+}

@@ -1,9 +1,50 @@
-import React from 'react';
+import React, { useContext, useRef, useState } from 'react';
 import './Login.css';
+import { AuthContext } from '../../providers/AuthProvider';
+import { Link } from 'react-router-dom';
 
 const Login = () => {
+    const { loginUser, resetPassword } = useContext(AuthContext);
+    const [success, setSuccess] = useState('');
+    const [error, setError] = useState('');
+    const emailRef = useRef();
+
     const handleLogin = event => {
         event.preventDefault();
+        setSuccess('');
+        setError('');
+
+        const form = event.target;
+        const email = form.email.value;
+        const password = form.password.value;
+        // console.log(name, email, password)
+
+        // firebase
+        loginUser(email, password)
+            .then(result => {
+                const user = result.user;
+                console.log(user);
+                form.reset();
+                setSuccess('Successfully registered!');
+            })
+            .catch(error => {
+                setError(error.message);
+            })
+    }
+    const handleResetPassword = () => {
+        const email = emailRef.current.value;
+        if (!email) {
+            alert('Please input your email address to reset password!');
+            return
+        }
+        resetPassword(email)
+            .then(() => {
+                alert('Please your check your email!')
+                setSuccess('');
+            })
+            .catch(() => {
+                setError(error.message);
+            })
     }
     return (
         <div>
@@ -11,13 +52,19 @@ const Login = () => {
             <form onSubmit={handleLogin}>
                 <div>
                     <label>Email:</label>
-                    <input type="email" name="email" placeholder='Email' />
+                    <input type="email" name="email" ref={emailRef} placeholder='Email' />
                 </div>
                 <div>
                     <label>Password:</label>
                     <input type="password" name="password" placeholder='Password' />
                 </div>
-                <button type="submit">Login</button>
+                <p>Do not have an account? Please <Link to="/register">Register</Link></p>
+                <div className='btn'>
+                    <button type="submit">Login</button>
+                    <Link className='reset' onClick={handleResetPassword}>Reset Password</Link>
+                </div>
+                <p className='success'>{success}</p>
+                <p className='error'>{error}</p>
             </form>
         </div>
     );
