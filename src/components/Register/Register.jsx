@@ -1,14 +1,19 @@
 import React from 'react';
-import './Login.css';
+import './Register.css';
 
-const Login = () => {
-    const handleLogin = event => {
+const Register = () => {
+    const handleRegister = event => {
         event.preventDefault();
+        
     }
     return (
         <div>
-            <h2 className='heading'>Please Login</h2>
-            <form onSubmit={handleLogin}>
+            <h2 className='heading'>Please Register</h2>
+            <form onSubmit={handleRegister}>
+                <div>
+                    <label>Name:</label>
+                    <input type="text" name="name" placeholder='Name' />
+                </div>
                 <div>
                     <label>Email:</label>
                     <input type="email" name="email" placeholder='Email' />
@@ -17,10 +22,10 @@ const Login = () => {
                     <label>Password:</label>
                     <input type="password" name="password" placeholder='Password' />
                 </div>
-                <button type="submit">Login</button>
+                <button type="submit">Register</button>
             </form>
         </div>
     );
 };
 
-export default Login;
+export default Register;
